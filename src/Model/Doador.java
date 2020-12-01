@@ -6,34 +6,35 @@ import java.sql.SQLException;
 
 public class Doador extends Cadastro {
 
-    // Atributos
+    private String senha;
     private String cpf;
     private final DoadorDAO dao;
 
-    // Metodo Construtor de Objeto Vazio
     public Doador() {
-          this.dao = new DoadorDAO(); // inicializado năo importa em qual construtor
+        this.dao = new DoadorDAO();
     }
-    
 
-    // Metodo Construtor de Objeto, inserindo dados
-    public Doador(String cpf ) {
+    public Doador(String senha, String cpf) {
+        this.senha = senha;
         this.cpf = cpf;
-        this.dao = new DoadorDAO(); // inicializado năo importa em qual construtor
-
+        this.dao = new DoadorDAO();
     }
 
-    // Metodo Construtor usando tambem o construtor da SUPERCLASSE
-    public Doador(int id, String nome, String senha , String endereco , String telefone, String cpf) {
-        super(id, nome, senha, endereco, telefone);
+    public Doador(String senha, String cpf, int id, String nome, String endereco, String telefone) {
+        super(id, nome, endereco, telefone);
+        this.senha = senha;
         this.cpf = cpf;
-        this.dao = new DoadorDAO(); // inicializado năo importa em qual construtor
-
+        this.dao = new DoadorDAO();
     }
 
-  
+    public String getSenha() {
+        return senha;
+    }
 
-    // Metodos GET e SET
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -42,21 +43,21 @@ public class Doador extends Cadastro {
         this.cpf = cpf;
     }
 
-    // Override necessario para poder retornar os dados de Pessoa no toString para aluno.
+    // Override necess�rio para poder retornar os dados de Pessoa no toString para aluno.
     @Override
     public String toString() {
         return "\n ID: " + this.getId()
                 + "\n Nome: " + this.getNome()
-                + "\n Endereço: " + this.getEndereco()
-                + "\n Telefone: " + this.getTelefone()
+                + "\n Senha: " + this.getSenha()
+                + "\n Endereco: " + this.getEndereco()
+                + "\n Telefone:" + this.getTelefone()
                 + "\n Cpf: " + this.getCpf()
                 + "\n -----------";
     }
 
     /*
     
-        ABAIXO OS MeTODOS PARA USO JUNTO COM O DAO
-        SIMULANDO A ESTRUTURA EM CAMADAS PARA USAR COM BANCOS DE DADOS.
+        ABAIXO OS M�TODOS PARA USO JUNTO COM O DAO
     
      */
     // Retorna a Lista de Alunos(objetos)
@@ -68,33 +69,21 @@ public class Doador extends Cadastro {
     public boolean InsertDoadorBD(Doador objeto) {
         dao.InsertDoadorBD(objeto);
         return true;
-
     }
 
-    // Deleta um aluno especefico pelo seu campo ID
+    // Deleta um aluno espec�fico pelo seu campo ID
     public boolean DeleteDoadorBD(int id) {
         dao.DeleteDoadorBD(id);
         return true;
     }
 
-    // Edita um aluno especefico pelo seu campo ID
-    public boolean UpdateDoadorBD( Doador objeto) {
-        dao.InsertDoadorBD(objeto);
+    // Edita um aluno espec�fico pelo seu campo ID
+    public boolean UpdateDoadorBD(Doador objeto) {
+        dao.UpdateDoadorBD(objeto);
         return true;
     }
 
-    // procura o INDICE de objeto da MinhaLista que contem o ID enviado.
-//    private int procuraIndice(int id) {
-//        int indice = -1;
-//        for (int i = 0; i < DoadorDAO.MinhaLista.size(); i++) {
-//            if (DoadorDAO.MinhaLista.get(i).getId() == id) {
-//                indice = i;
-//            }
-//        }
-//        return indice;
-//    }
-
-    // carrega dados de um aluno especefico pelo seu ID
+    // carrega dados de um aluno espec�fico pelo seu ID
     public Doador carregaDoador(int id) {
         dao.carregaDoador(id);
         return null;

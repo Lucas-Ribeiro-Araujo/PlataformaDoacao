@@ -2,20 +2,32 @@ package Model;
 
 import java.util.*;
 import DAO.InstituicaoDAO;
+import java.sql.SQLException;
 
 public class Instituicao extends Cadastro {
 
-    // Atributos
     private String area;
     private String descricao;
+    private double doacao;
+    private final InstituicaoDAO dao;
 
     public Instituicao() {
+        this.dao = new InstituicaoDAO();
     }
 
-    public Instituicao(int id, String nome, String senha, String endereco, String telefone, String area, String descricao) {
-        super(id, nome, senha, endereco, telefone);
+    public Instituicao(String area, String descricao, double doacao) {
         this.area = area;
         this.descricao = descricao;
+        this.doacao = doacao;
+        this.dao = new InstituicaoDAO();
+    }
+
+    public Instituicao(String area, String descricao, int id, String nome, String endereco, String telefone, double doacao) {
+        super(id, nome, endereco, telefone);
+        this.area = area;
+        this.descricao = descricao;
+        this.doacao = doacao;
+        this.dao = new InstituicaoDAO();
     }
 
     public String getArea() {
@@ -34,63 +46,67 @@ public class Instituicao extends Cadastro {
         this.descricao = descricao;
     }
 
-    // Override necessario para poder retornar os dados de Pessoa no toString para aluno.
+    public double getDoacao() {
+        return doacao;
+    }
+
+    public void setDoacao(double doacao) {
+        this.doacao = doacao;
+    }
+
+    // Override necess�rio para poder retornar os dados de Pessoa no toString para instituicao.
     @Override
     public String toString() {
         return "\n ID: " + this.getId()
                 + "\n Nome: " + this.getNome()
-                + "\n Endere�o: " + this.getEndereco()
-                + "\n Telefone: " + this.getTelefone()
-                + "\n �rea: " + this.getArea()
-                + "\n Descri��o: " + this.getDescricao()
+                + "\n Endereco: " + this.getEndereco()
+                + "\n Telefone:" + this.getTelefone()
+                + "\n Senha: " + this.getArea()
+                + "\n Senha: " + this.getDescricao()
+                + "\n Doacao: " + this.getDoacao()
                 + "\n -----------";
     }
 
+    /*
+    
+        ABAIXO OS M�TODOS PARA USO JUNTO COM O DAO
+    
+     */
+    // Retorna a Lista de Alunos(objetos)
     public ArrayList getMinhaLista() {
-        return InstituicaoDAO.MinhaLista;
+        return dao.getMinhaLista();
     }
 
     // Cadastra novo aluno
     public boolean InsertInstituicaoBD(Instituicao objeto) {
-        InstituicaoDAO.MinhaLista.add(objeto);
+        dao.InsertInstituicaoBD(objeto);
         return true;
-
     }
 
-    // Deleta um aluno especefico pelo seu campo ID
+    // Deleta um aluno espec�fico pelo seu campo ID
     public boolean DeleteInstituicaoBD(int id) {
-        int indice = this.procuraIndice(id);
-        InstituicaoDAO.MinhaLista.remove(indice);
+        dao.DeleteInstituicaoBD(id);
         return true;
     }
 
-    // Edita um aluno especefico pelo seu campo ID
-    public boolean UpdateInstituicaoBD(int id, Instituicao objeto) {
-        int indice = this.procuraIndice(id);
-        InstituicaoDAO.MinhaLista.set(indice, objeto);
+    // Edita um aluno espec�fico pelo seu campo ID
+    public boolean UpdateInstituicaoBD(Instituicao objeto) {
+        dao.UpdateInstituicaoBD(objeto);
         return true;
     }
 
-    // procura o INDICE de objeto da MinhaLista que contem o ID enviado.
-    private int procuraIndice(int id) {
-        int indice = -1;
-        for (int i = 0; i < InstituicaoDAO.MinhaLista.size(); i++) {
-            if (InstituicaoDAO.MinhaLista.get(i).getId() == id) {
-                indice = i;
-            }
-        }
-        return indice;
-    }
-
-    // carrega dados de um aluno especefico pelo seu ID
+    // carrega dados de um aluno espec�fico pelo seu ID
     public Instituicao carregaInstituicao(int id) {
-        int indice = this.procuraIndice(id);
-        return InstituicaoDAO.MinhaLista.get(indice);
+        dao.carregaInstituicao(id);
+        return null;
     }
 
     // retorna o maior ID da nossa base de dados
-    public int maiorID() {
-        return InstituicaoDAO.maiorID();
+    public int maiorID() throws SQLException {
+        return dao.maiorID();
     }
-    
+
+    public boolean Doar(Instituicao objeto) {
+        return dao.Doar(objeto);
+    }
 }

@@ -1,7 +1,3 @@
-/*
- Aqui vamos simular a persistencia de dados.
- Nas proximas aulas nos vamos reprogramar esta classe para conectar-se com o banco de dados.
- */
 package DAO;
 
 import Model.Doador;
@@ -18,10 +14,10 @@ public class DoadorDAO {
     public static ArrayList<Doador> MinhaLista = new ArrayList<Doador>();
 
     public DoadorDAO() {
-
     }
 
     public int maiorID() throws SQLException {
+
         int maiorID = 0;
         try {
             Statement stmt = this.getConexao().createStatement();
@@ -30,6 +26,7 @@ public class DoadorDAO {
             maiorID = res.getInt("id");
 
             stmt.close();
+
         } catch (SQLException ex) {
         }
 
@@ -38,7 +35,7 @@ public class DoadorDAO {
 
     public Connection getConexao() {
 
-        Connection connection = null;  //instância da conexăo
+        Connection connection = null;  //inst�ncia da conex�o
 
         try {
 
@@ -46,12 +43,12 @@ public class DoadorDAO {
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
 
-            // Configurar a conexăo
+            // Configurar a conex�o
             String server = "localhost"; //caminho do MySQL
-            String database = "db_doador";
+            String database = "db_doar";
             String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "cesar";
+            String password = "rootpass";
 
             connection = DriverManager.getConnection(url, user, password);
 
@@ -59,12 +56,12 @@ public class DoadorDAO {
             if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
-                System.out.println("Status: NĂO CONECTADO!");
+                System.out.println("Status: NÃO CONECTADO!");
             }
 
             return connection;
 
-        } catch (ClassNotFoundException e) {  //Driver năo encontrado
+        } catch (ClassNotFoundException e) {  //Driver n�o encontrado
             System.out.println("O driver nao foi encontrado.");
             return null;
 
@@ -84,14 +81,14 @@ public class DoadorDAO {
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_doador");
             while (res.next()) {
 
-                int id = res.getInt("id");
-                String nome = res.getString("nome");
-                String endereco = res.getString("Endereço");
-                String telefone = res.getString("Telefone");
                 String cpf = res.getString("cpf");
                 String senha = res.getString("senha");
-
-                Doador objeto = new Doador(id, nome, senha, endereco, telefone, cpf);
+                int id = res.getInt("id");
+                String nome = res.getString("nome");
+                String endereco = res.getString("endereco");
+                String telefone = res.getString("telefone");
+                
+                Doador objeto = new Doador(cpf, senha, id, nome, endereco, telefone);
 
                 MinhaLista.add(objeto);
             }
@@ -129,7 +126,7 @@ public class DoadorDAO {
 
     }
 
-    // Deleta um aluno específico pelo seu campo ID
+    // Deleta um aluno espec�fico pelo seu campo ID
     public boolean DeleteDoadorBD(int id) {
         try {
             Statement stmt = this.getConexao().createStatement();
@@ -142,7 +139,7 @@ public class DoadorDAO {
         return true;
     }
 
-    // Edita um aluno específico pelo seu campo ID
+    // Edita um aluno espec�fico pelo seu campo ID
     public boolean UpdateDoadorBD(Doador objeto) {
 
         String sql = "UPDATE tb_doador set nome = ? ,senha = ? ,endereco = ? ,telefone = ? ,cpf = ? WHERE id = ?";
@@ -150,12 +147,12 @@ public class DoadorDAO {
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
-            stmt.setInt(1, objeto.getId());
-            stmt.setString(2, objeto.getNome());
-            stmt.setString(3, objeto.getSenha());
-            stmt.setString(4, objeto.getEndereco());
-            stmt.setString(5, objeto.getTelefone());
-            stmt.setString(6, objeto.getCpf());
+            stmt.setString(1, objeto.getNome());
+            stmt.setString(2, objeto.getSenha());
+            stmt.setString(3, objeto.getEndereco());
+            stmt.setString(4, objeto.getTelefone());
+            stmt.setString(5, objeto.getCpf());
+            stmt.setInt(6, objeto.getId());
 
             stmt.execute();
             stmt.close();
@@ -179,7 +176,8 @@ public class DoadorDAO {
             res.next();
 
             objeto.setNome(res.getString("nome"));
-            objeto.setEndereco(res.getString("endereço"));
+            objeto.setSenha(res.getString("senha"));
+            objeto.setEndereco(res.getString("endereco"));
             objeto.setTelefone(res.getString("telefone"));
             objeto.setCpf(res.getString("cpf"));
 
@@ -190,5 +188,3 @@ public class DoadorDAO {
         return objeto;
     }
 }
-
-
