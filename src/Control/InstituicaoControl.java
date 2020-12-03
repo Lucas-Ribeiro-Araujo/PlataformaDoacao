@@ -55,7 +55,7 @@ public class InstituicaoControl {
     public ArrayList getMinhaLista() {
         return instituicao.getMinhaLista();
     }
-
+    
     public boolean Doar(String area, String descricao, int id, String nome, String endereco, String telefone, double doacao){
         Instituicao objeto = new Instituicao(area, descricao, id, nome, endereco, telefone, doacao);
         if (instituicao.Doar(objeto)) {
@@ -64,7 +64,7 @@ public class InstituicaoControl {
             return false;
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     public String[][] getMinhaMatrizTexto() {
 
@@ -79,7 +79,7 @@ public class InstituicaoControl {
             MatrizInstituicao[i][3] = minhalista.get(i).getTelefone();
             MatrizInstituicao[i][4] = minhalista.get(i).getArea();
             MatrizInstituicao[i][5] = minhalista.get(i).getDescricao();
-            MatrizInstituicao[i][6] = minhalista.get(i).getDoacao() + "";
+             MatrizInstituicao[i][6] = minhalista.get(i).getDoacao() + "";
         }
 
         return MatrizInstituicao;

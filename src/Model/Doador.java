@@ -8,22 +8,25 @@ public class Doador extends Cadastro {
 
     private String senha;
     private String cpf;
+    private String formaDePagamento;
     private final DoadorDAO dao;
 
     public Doador() {
         this.dao = new DoadorDAO();
     }
 
-    public Doador(String senha, String cpf) {
+    public Doador(String senha, String cpf, String formaDePagamento) {
         this.senha = senha;
         this.cpf = cpf;
+        this.formaDePagamento =formaDePagamento;
         this.dao = new DoadorDAO();
     }
 
-    public Doador(String senha, String cpf, int id, String nome, String endereco, String telefone) {
+    public Doador(String senha, String cpf, int id, String nome, String endereco, String telefone, String formaDePagamento) {
         super(id, nome, endereco, telefone);
         this.senha = senha;
         this.cpf = cpf;
+        this.formaDePagamento = formaDePagamento;
         this.dao = new DoadorDAO();
     }
 
@@ -42,6 +45,14 @@ public class Doador extends Cadastro {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+    
+       public String getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(String formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
 
     // Override necess�rio para poder retornar os dados de Pessoa no toString para aluno.
     @Override
@@ -52,6 +63,7 @@ public class Doador extends Cadastro {
                 + "\n Endereco: " + this.getEndereco()
                 + "\n Telefone:" + this.getTelefone()
                 + "\n Cpf: " + this.getCpf()
+                + "\n formaDePagamento " + this.getFormaDePagamento()
                 + "\n -----------";
     }
 
@@ -93,4 +105,13 @@ public class Doador extends Cadastro {
     public int maiorID() throws SQLException {
         return dao.maiorID();
     }
+    
+//    public Doador LoginDoador(String nome, String senha){
+//       return ;
+//    }
+//    
+    
+//    public boolean Login(Nome, senha){
+//        
+//    }
 }

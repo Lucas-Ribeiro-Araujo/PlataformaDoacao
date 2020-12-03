@@ -10,10 +10,6 @@ public class Cadastro {
     public Cadastro() {
     }
 
-    public Cadastro(int id) {
-        this.id = id;
-    }
-    
     public Cadastro(int id, String nome, String endereco, String telefone) {
         this.id = id;
         this.nome = nome;

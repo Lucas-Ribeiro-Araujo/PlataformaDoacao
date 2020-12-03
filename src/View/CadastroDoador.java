@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Control.DoadorControl;
@@ -11,16 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author User
- */
 public class CadastroDoador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CadastroDoador
-     */
-   private DoadorControl controlador; // cria o v�nculo com o controlador
+    private DoadorControl controlador; // cria o v�nculo com o controlador
 
     public CadastroDoador() {
         initComponents();
@@ -37,35 +25,48 @@ public class CadastroDoador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         c_nome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        c_endereco = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        c_telefone = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        c_cpf = new javax.swing.JTextField();
+        b_cadastrar = new javax.swing.JButton();
+        b_cancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         c_senha = new javax.swing.JTextField();
-        c_endereco = new javax.swing.JTextField();
-        c_telefone = new javax.swing.JTextField();
-        c_cpf = new javax.swing.JTextField();
-        b_cancelar = new javax.swing.JButton();
-        b_cadastrar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        b_gerenciar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        c_formaDePagamento = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Doador");
+        setResizable(false);
 
         jLabel1.setText("Nome:");
 
-        jLabel2.setText("Senha:");
-
-        jLabel3.setText("Endereço:");
-
-        jLabel4.setText("Telefone:");
-
-        jLabel5.setText("CPF:");
-
-        b_cancelar.setText("Cancelar");
-        b_cancelar.addActionListener(new java.awt.event.ActionListener() {
+        c_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_cancelarActionPerformed(evt);
+                c_nomeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Endereço:");
+
+        jLabel3.setText("Telefone:");
+
+        c_telefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_telefoneActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("CPF:");
+
+        c_cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_cpfActionPerformed(evt);
             }
         });
 
@@ -76,6 +77,34 @@ public class CadastroDoador extends javax.swing.JFrame {
             }
         });
 
+        b_cancelar.setText("Cancelar");
+        b_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Senha:");
+
+        c_senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_senhaActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setText("CADASTRO DOADOR");
+        jLabel6.setToolTipText("");
+
+        b_gerenciar.setText("Gerenciar Cadastro");
+        b_gerenciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_gerenciarActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Forma de Pagamento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,79 +112,96 @@ public class CadastroDoador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(b_cancelar)
-                        .addGap(37, 37, 37)
-                        .addComponent(b_cadastrar))
+                        .addGap(133, 133, 133)
+                        .addComponent(b_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(b_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(b_gerenciar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(c_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(c_cpf)
-                                        .addComponent(c_telefone)
-                                        .addComponent(c_senha)
-                                        .addComponent(c_endereco)))))))
-                .addContainerGap(224, Short.MAX_VALUE))
+                        .addGap(253, 253, 253)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(c_nome)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(c_senha)
+                            .addComponent(c_telefone)
+                            .addComponent(c_cpf)
+                            .addComponent(c_endereco, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(c_formaDePagamento))))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(c_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(c_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(c_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(c_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(c_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(c_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(c_formaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(c_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_cancelar)
-                    .addComponent(b_cadastrar))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(b_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_gerenciar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
+    private void c_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_nomeActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_b_cancelarActionPerformed
+    }//GEN-LAST:event_c_nomeActionPerformed
+
+    private void c_telefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_telefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_telefoneActionPerformed
+
+    private void c_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_cpfActionPerformed
 
     private void b_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cadastrarActionPerformed
-        // TODO add your handling code here:
-         try {
+
+        try {
             // recebendo e validando dados da interface gr�fica.
             String nome = "";
             String senha = "";
             String endereco = "";
-            String telefone= "";
+            String telefone = "";
             String cpf = "";
-            
+            String formaDePagamento = "";
+
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
             } else {
@@ -179,15 +225,23 @@ public class CadastroDoador extends javax.swing.JFrame {
             } else {
                 telefone = this.c_telefone.getText();
             }
-            
+
             if (this.c_cpf.getText().length() < 2) {
                 throw new Mensagens("CPF deve conter ao menos 2 caracteres");
             } else {
                 cpf = this.c_cpf.getText();
             }
+            
+            if (this.c_formaDePagamento.getText().length() < 2) {
+                throw new Mensagens("Forma de pagamento deve conter ao menos 2 caracteres");
+            } else {
+                formaDePagamento = this.c_formaDePagamento.getText();
+            }
+            
+            
 
             // envia os dados para o Controlador cadastrar
-            if (this.controlador.Cadastrar(senha, cpf, nome, endereco, telefone)) {
+            if (this.controlador.Cadastrar(senha, cpf, nome, endereco, telefone, formaDePagamento)) {
                 JOptionPane.showMessageDialog(rootPane, "Doador Cadastrado com Sucesso!");
 
                 // limpa campos da interface
@@ -196,6 +250,7 @@ public class CadastroDoador extends javax.swing.JFrame {
                 this.c_endereco.setText("");
                 this.c_telefone.setText("");
                 this.c_cpf.setText("");
+                this.c_formaDePagamento.setText("");
 
             }
 
@@ -206,9 +261,27 @@ public class CadastroDoador extends javax.swing.JFrame {
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número.");
         } catch (SQLException ex) {
-            
-        } 
+
+        }
+
+
     }//GEN-LAST:event_b_cadastrarActionPerformed
+
+    private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+
+    }//GEN-LAST:event_b_cancelarActionPerformed
+
+    private void c_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_senhaActionPerformed
+
+    private void b_gerenciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_gerenciarActionPerformed
+        // TODO add your handling code here:
+        GerenciaDoador objeto = new GerenciaDoador();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_b_gerenciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,6 +309,9 @@ public class CadastroDoador extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroDoador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -248,8 +324,10 @@ public class CadastroDoador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_cadastrar;
     private javax.swing.JButton b_cancelar;
+    private javax.swing.JButton b_gerenciar;
     private javax.swing.JTextField c_cpf;
     private javax.swing.JTextField c_endereco;
+    private javax.swing.JTextField c_formaDePagamento;
     private javax.swing.JTextField c_nome;
     private javax.swing.JTextField c_senha;
     private javax.swing.JTextField c_telefone;
@@ -258,5 +336,7 @@ public class CadastroDoador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

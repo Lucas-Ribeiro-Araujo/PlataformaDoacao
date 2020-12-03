@@ -1,5 +1,6 @@
 package Model;
 
+import DAO.DoadorDAO;
 import java.util.*;
 import DAO.InstituicaoDAO;
 import java.sql.SQLException;
@@ -45,8 +46,7 @@ public class Instituicao extends Cadastro {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public double getDoacao() {
+       public double getDoacao() {
         return doacao;
     }
 
@@ -63,7 +63,7 @@ public class Instituicao extends Cadastro {
                 + "\n Telefone:" + this.getTelefone()
                 + "\n Senha: " + this.getArea()
                 + "\n Senha: " + this.getDescricao()
-                + "\n Doacao: " + this.getDoacao()
+                 + "\n Doacao: " + this.getDoacao()
                 + "\n -----------";
     }
 
@@ -105,7 +105,8 @@ public class Instituicao extends Cadastro {
     public int maiorID() throws SQLException {
         return dao.maiorID();
     }
-
+    
+    
     public boolean Doar(Instituicao objeto) {
         return dao.Doar(objeto);
     }

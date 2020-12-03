@@ -45,10 +45,10 @@ public class InstituicaoDAO {
 
             // Configurar a conexão
             String server = "localhost"; //caminho do MySQL
-            String database = "db_doar";
+            String database = "db_doador";
             String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "rootpass";
+            String password = "cesar";
 
             connection = DriverManager.getConnection(url, user, password);
 
@@ -88,8 +88,8 @@ public class InstituicaoDAO {
                 String endereco = res.getString("endereco");
                 String telefone = res.getString("telefone");
                 double doacao = res.getDouble("saldo");
-
-                Instituicao objeto = new Instituicao(area, descricao, id, nome, endereco, telefone, doacao);
+                
+               Instituicao objeto = new Instituicao(area, descricao, id, nome, endereco, telefone, doacao);
 
                 MinhaLista.add(objeto);
             }
@@ -104,7 +104,7 @@ public class InstituicaoDAO {
 
     // Cadastra nova Instituicao
     public boolean InsertInstituicaoBD(Instituicao objeto) {
-        String sql = "INSERT INTO tb_instituicao(id,nome,endereco,telefone,area,descricao,saldo) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_instituicao(id,nome,endereco,telefone,area,descricao,saldo) VALUES(?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
@@ -115,7 +115,7 @@ public class InstituicaoDAO {
             stmt.setString(4, objeto.getTelefone());
             stmt.setString(5, objeto.getArea());
             stmt.setString(6, objeto.getDescricao());
-            stmt.setDouble(7, objeto.getDoacao());
+              stmt.setDouble(7, objeto.getDoacao());
 
             stmt.execute();
             stmt.close();
@@ -190,7 +190,7 @@ public class InstituicaoDAO {
         }
         return objeto;
     }
-
+    
     public boolean Doar(Instituicao objeto) {
 
         String sql = "UPDATE tb_instituicao set saldo = saldo + ? WHERE id = ?";

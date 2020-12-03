@@ -45,10 +45,10 @@ public class DoadorDAO {
 
             // Configurar a conex�o
             String server = "localhost"; //caminho do MySQL
-            String database = "db_doar";
+            String database = "db_doador";
             String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "rootpass";
+            String password = "cesar";
 
             connection = DriverManager.getConnection(url, user, password);
 
@@ -87,8 +87,9 @@ public class DoadorDAO {
                 String nome = res.getString("nome");
                 String endereco = res.getString("endereco");
                 String telefone = res.getString("telefone");
+                String formaDePagamento = res.getString("formaDePagamento");
                 
-                Doador objeto = new Doador(cpf, senha, id, nome, endereco, telefone);
+                Doador objeto = new Doador(cpf, senha, id, nome, endereco, telefone, formaDePagamento);
 
                 MinhaLista.add(objeto);
             }
@@ -103,7 +104,7 @@ public class DoadorDAO {
 
     // Cadastra novo aluno
     public boolean InsertDoadorBD(Doador objeto) {
-        String sql = "INSERT INTO tb_doador(id,nome,senha,endereco,telefone,cpf) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_doador(id,nome,senha,endereco,telefone,cpf, formaDePagamento ) VALUES(?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
@@ -114,6 +115,7 @@ public class DoadorDAO {
             stmt.setString(4, objeto.getEndereco());
             stmt.setString(5, objeto.getTelefone());
             stmt.setString(6, objeto.getCpf());
+            stmt.setString(7, objeto.getFormaDePagamento());
 
             stmt.execute();
             stmt.close();
@@ -142,7 +144,7 @@ public class DoadorDAO {
     // Edita um aluno espec�fico pelo seu campo ID
     public boolean UpdateDoadorBD(Doador objeto) {
 
-        String sql = "UPDATE tb_doador set nome = ? ,senha = ? ,endereco = ? ,telefone = ? ,cpf = ? WHERE id = ?";
+        String sql = "UPDATE tb_doador set nome = ? ,senha = ? ,endereco = ? ,telefone = ? ,cpf = ? , formaDePagamento = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
@@ -152,7 +154,8 @@ public class DoadorDAO {
             stmt.setString(3, objeto.getEndereco());
             stmt.setString(4, objeto.getTelefone());
             stmt.setString(5, objeto.getCpf());
-            stmt.setInt(6, objeto.getId());
+            stmt.setString(6, objeto.getFormaDePagamento());
+            stmt.setInt(7, objeto.getId());
 
             stmt.execute();
             stmt.close();
@@ -180,6 +183,7 @@ public class DoadorDAO {
             objeto.setEndereco(res.getString("endereco"));
             objeto.setTelefone(res.getString("telefone"));
             objeto.setCpf(res.getString("cpf"));
+            objeto.setFormaDePagamento(res.getString("formaDePagamento"));
 
             stmt.close();
 
@@ -187,4 +191,28 @@ public class DoadorDAO {
         }
         return objeto;
     }
+    
+    public Doador LoginDoador(int id){
+        Doador objeto = new Doador();
+        objeto.setId(id);
+        
+         try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * id FROM tb_doador WHERE id = " + id);
+            res.next();
+
+            objeto.setNome(res.getString("nome"));
+            objeto.setSenha(res.getString("senha"));
+            objeto.setEndereco(res.getString("endereco"));
+            objeto.setTelefone(res.getString("telefone"));
+            objeto.setCpf(res.getString("cpf"));
+
+            stmt.close();
+
+        } catch (SQLException erro) {
+        }
+        return objeto;
+    }
+    
+    
 }

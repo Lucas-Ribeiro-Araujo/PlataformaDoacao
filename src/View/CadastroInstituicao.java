@@ -48,8 +48,9 @@ public class CadastroInstituicao extends javax.swing.JFrame {
         b_cadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cadastro de Instituição");
 
         jLabel4.setText("Telefone:");
@@ -75,6 +76,13 @@ public class CadastroInstituicao extends javax.swing.JFrame {
         jLabel2.setText("Área:");
 
         jLabel3.setText("Endereço:");
+
+        jButton1.setText("Gerenciar Instituições");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,8 +112,10 @@ public class CadastroInstituicao extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(b_cancelar)
                         .addGap(37, 37, 37)
-                        .addComponent(b_cadastrar)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                        .addComponent(b_cadastrar)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton1)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +143,8 @@ public class CadastroInstituicao extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_cancelar)
-                    .addComponent(b_cadastrar))
+                    .addComponent(b_cadastrar)
+                    .addComponent(jButton1))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
@@ -155,7 +166,7 @@ public class CadastroInstituicao extends javax.swing.JFrame {
             String telefone= "";
             String area = "";
             String descricao = "";
-            double doacao = 0;
+             double doacao = 0;
 
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
@@ -211,6 +222,11 @@ public class CadastroInstituicao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_b_cadastrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            GerenciaInstituicao objeto = new GerenciaInstituicao();
+            objeto.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +270,7 @@ public class CadastroInstituicao extends javax.swing.JFrame {
     private javax.swing.JTextField c_endereco;
     private javax.swing.JTextField c_nome;
     private javax.swing.JTextField c_telefone;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

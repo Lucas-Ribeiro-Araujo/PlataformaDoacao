@@ -13,12 +13,12 @@ public class DoadorControl {
     }
 
     // Create 
-    public boolean Cadastrar(String senha, String cpf, String nome, String endereco, String telefone) throws SQLException {
+    public boolean Cadastrar(String senha, String cpf, String nome, String endereco, String telefone, String formaDePagamento) throws SQLException {
 
         // AlunoControl recebe os dados da VIEW, cria um objeto COMPLETO e manda este objeto para aluno para inserir em (DAO)
         // Aluno CONTROL N�O DEVE ACESSAR DAO DIRETAMENTE. L� em aluno deve ter uma fun��o que acessa DAO para inserir. InsertAlunoBD()
         int id = doador.maiorID() + 1;
-        Doador objeto = new Doador(senha, cpf, id, nome, endereco, telefone);
+        Doador objeto = new Doador(senha, cpf, id, nome, endereco, telefone, formaDePagamento);
         if (doador.InsertDoadorBD(objeto)) {
             return true;
         } else {
@@ -27,8 +27,8 @@ public class DoadorControl {
     }
 
     // Update
-    public boolean Editar(String senha, String cpf, int id, String nome, String endereco, String telefone) {
-        Doador objeto = new Doador(senha, cpf, id, nome, endereco, telefone);
+    public boolean Editar(String senha, String cpf, int id, String nome, String endereco, String telefone, String formaDePagamento) {
+        Doador objeto = new Doador(senha, cpf, id, nome, endereco, telefone, formaDePagamento);
         if (doador.UpdateDoadorBD(objeto)) {
             return true;
         } else {
@@ -62,7 +62,7 @@ public class DoadorControl {
         ArrayList<Doador> minhalista = doador.getMinhaLista();
         int tamanho = minhalista.size();
 
-        String MatrizDoador[][] = new String[tamanho][6];
+        String MatrizDoador[][] = new String[tamanho][7];
         for (int i = 0; i < tamanho; i++) {
             MatrizDoador[i][0] = minhalista.get(i).getId() + "";
             MatrizDoador[i][1] = minhalista.get(i).getNome();
@@ -70,6 +70,7 @@ public class DoadorControl {
             MatrizDoador[i][3] = minhalista.get(i).getEndereco();
             MatrizDoador[i][4] = minhalista.get(i).getTelefone();
             MatrizDoador[i][5] = minhalista.get(i).getCpf();
+            MatrizDoador[i][6] = minhalista.get(i).getFormaDePagamento();
         }
 
         return MatrizDoador;

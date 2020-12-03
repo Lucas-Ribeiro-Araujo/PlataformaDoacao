@@ -81,7 +81,6 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         c_area = new javax.swing.JTextField();
-        c_descricao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         c_endereco = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -89,8 +88,10 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         c_telefone = new javax.swing.JTextField();
         b_cancelar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        c_descricao = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gerenciamento de Instituição");
 
         b_alterar.setText("Alterar");
@@ -154,39 +155,44 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
             }
         });
 
+        c_descricao.setColumns(20);
+        c_descricao.setRows(5);
+        jScrollPane2.setViewportView(c_descricao);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(b_cancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(b_alterar)
-                        .addGap(18, 18, 18)
-                        .addComponent(b_apagar))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(c_nome)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(c_endereco)
-                                .addComponent(c_telefone)
-                                .addComponent(c_area, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(c_descricao, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                .addContainerGap(462, Short.MAX_VALUE))
+                    .addComponent(c_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(c_telefone)
+                            .addComponent(c_area, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(c_endereco)
+                            .addComponent(jScrollPane2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b_cancelar)
+                .addGap(18, 18, 18)
+                .addComponent(b_alterar)
+                .addGap(18, 18, 18)
+                .addComponent(b_apagar)
+                .addGap(255, 255, 255))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,16 +215,16 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(c_area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(c_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_cancelar)
                     .addComponent(b_alterar)
                     .addComponent(b_apagar))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -398,7 +404,7 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
     private javax.swing.JButton b_apagar;
     private javax.swing.JButton b_cancelar;
     private javax.swing.JTextField c_area;
-    private javax.swing.JTextField c_descricao;
+    private javax.swing.JTextArea c_descricao;
     private javax.swing.JTextField c_endereco;
     private javax.swing.JTextField c_nome;
     private javax.swing.JTextField c_telefone;
@@ -408,6 +414,7 @@ public class GerenciaInstituicao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAlunos;
     // End of variables declaration//GEN-END:variables
 }
